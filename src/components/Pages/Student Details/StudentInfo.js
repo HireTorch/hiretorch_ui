@@ -1,10 +1,12 @@
 import { Descriptions } from "antd";
 const StudentInfo = () => (
-  <Descriptions title="User Info">
+  <Descriptions title="Basic Info">
     <Descriptions.Item label="Student Name">Shubham Chavan</Descriptions.Item>
     <Descriptions.Item label="Phone">9876543210</Descriptions.Item>
     <Descriptions.Item label="Gender">Male</Descriptions.Item>
     <Descriptions.Item label="Date Of Birth">04/02/1997</Descriptions.Item>
+    <Descriptions.Item label="College Name">INFOWAY CDAC</Descriptions.Item>
+    <Descriptions.Item label="Course">PG-DAC</Descriptions.Item>
     <Descriptions.Item label="Student Email">
       Shubhamchavan@gmail.com
     </Descriptions.Item>

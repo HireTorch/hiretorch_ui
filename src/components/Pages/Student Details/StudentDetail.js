@@ -3,6 +3,7 @@ import { IconHome, IconHomeSearch,  IconListSearch, IconSearch, IconSearchOff } 
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useState } from 'react';
 import FileUpload from './FileUpload';
+import StudentQualification from './Qualification/StudentQualification';
 import StudentAddress from './StudentAddress';
 import StudentInfo from './StudentInfo';
 
@@ -94,6 +95,7 @@ const StudentDetail = () => {
              <FileUpload/>
              <hr/>
              <StudentAddress />
+             <StudentQualification />
           </div>
          
         </Content>

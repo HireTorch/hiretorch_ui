@@ -11,9 +11,9 @@ const Register = () => {
       document.title = "Sign-Up || Hire-Torch "
     }, []);
 
-    // const handleSubmit =  (e) => {
-    //   e.preventDefault();
-
+    const handleSubmit =  (e) => {
+      e.preventDefault();
+  }
   return (
     <div className="Registration-Form"> 
       <Form className="auth-form-container col-sm-6 offset-sm-3">
@@ -106,8 +106,7 @@ const Register = () => {
             class="btn btn-success"
             hreF="/home"
             role="button"
-            // onClick={}
-            // onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Submit
           </a>
