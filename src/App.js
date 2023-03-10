@@ -1,13 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { React, useState, ReactDOM } from "react";
+import { React, useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Switch,
-  Redirect,
-  useLocation,
   Routes,
 } from "react-router-dom";
 import { render } from "react-dom";
@@ -17,13 +13,17 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import NotFound from "./components/NotFound";
+// import NotFound from "./components/NotFound";
 import CompanyLogin from "./components/CompanyLogin";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import InstituteLogin from "./components/InstituteLogin";
 import AdminLogin from "./components/AdminLogin";
 import ForgotPassword from "./components/ForgotPassword";
+import Country from "./components/Country";
+import AdminProfile from "./components/Adminprofile";
+import StudentLogin from "./components/Pages/StudentLogin";
+
 
 function App() {
   const [currentForm, setCurrentForm] = useState("Login");
@@ -45,20 +45,22 @@ function App() {
         <hr />
         <Container>
           <Routes>
+            <Route path="/admin-profile" element={<AdminProfile />}exact />
             <Route path="/home" element={<Home />} exact />
             <Route path="/about" element={<About />} exact />
             <Route path="/contact" element={<Contact />} exact />
-            <Route path="/registration" element={<Register />} />
+            <Route path="/registration" element={<Register />} exact/>
+            <Route path="/country" element={<Country />} exact />
+            <Route path="/student-login-ant" element={<StudentLogin/>} exact/>
           </Routes>
           <Row>
             <Col md={7}>
-              {/* Couresoule */}
               <Routes>
                 <Route path="/forgot-password" element={<ForgotPassword />} />
               </Routes>
             </Col>
             <Col md={5}>
-              <Routes>
+              <Routes>     
                 <Route path="/student-Login" element={<Login />} />
                 <Route path="/company-Login" element={<CompanyLogin />} exact />
                 <Route path="/institute-Login" element={<InstituteLogin />} />

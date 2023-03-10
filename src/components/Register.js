@@ -1,5 +1,5 @@
 import { React ,useEffect } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 const Register = () => {
     useEffect(() => {
@@ -35,9 +35,11 @@ const Register = () => {
             placeholder="Last Name"
           />
           <br />
-          {/* <Label for="RegisterEmail">Email</Label> */}
           <Input type="email" name="email" id="R-Email" placeholder="Email" />
-          {/* <br/>  */}
+          <FormGroup>
+          <br />
+          <Input type="date" name="date" id="exampleDate" placeholder="date placeholder"/>
+          </FormGroup>
           <label className="text-center">
             <i>
               <b>Gender</b>

@@ -13,11 +13,12 @@ function Header({ Header_name }) {
           <img
             src="./images/hire_torch.png"
             alt=""
-            width="90"
-            height="120"
+            width="60"
+            height="70"
           /> <b> HireTorch</b>
-        
         </Navbar.Brand>
+
+
         <Nav className="me-left">
           <Nav.Link tag="h1" as ={Link} to ="/home" action>
             Home
@@ -25,7 +26,9 @@ function Header({ Header_name }) {
           <Nav.Link tag="a1" as ={Link} to ="/about" action>
             About
           </Nav.Link>
-          <Nav.Link tag="a3" as ={Link} to ="/registration" action>Sign Up</Nav.Link>
+          <Nav.Link tag="a3" as ={Link} to ="/registration" action>
+            Sign Up
+          </Nav.Link>
           {/* <Nav.Link tag="a4" href="/companies" action>Companies</Nav.Link> */}
 
           <NavDropdown

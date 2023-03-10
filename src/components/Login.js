@@ -1,5 +1,5 @@
 import { React, useState ,useEffect } from "react";
-import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Form, FormGroup} from "reactstrap";
 
 
 const Login = (props) => {
@@ -48,7 +48,7 @@ const Login = (props) => {
           name="login-button"
           id="login"
           class="btn btn-primary"
-          hreF="#"
+          href="/about"
           role="button"
         >
           Login

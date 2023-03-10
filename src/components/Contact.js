@@ -8,6 +8,7 @@ const Contact = () => {
     <>
     <div class="footer-center col-md-4 col-sm-4">
                 <div>
+                    <h2>Contact INFO : </h2>
                     <i class="Location">Address :</i>
                     <p><span> CDAC Infoway - 411011 </span> Pune, India</p>
                 </div>

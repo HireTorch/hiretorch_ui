@@ -1,23 +1,28 @@
 import { React, useState, useEffect, useHistory } from "react";
 import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from "axios";
-
+import AdminProfile from "./Adminprofile";
 
 const AdminLogin = () => {
   const [adminemail, setEmail] = useState("");
   const [adminpassword, setPassword] = useState("");
+  const [err, setError] = useState("");
+
+
 
   useEffect(() => {
     document.title = "Admin || Hire-Torch";
   }, []);
 
+
   const handleApi = () => {
     console.log(adminemail, adminpassword);
-    axios.post('http://localhost:3000/api/adminlogin',{
+    axios.post('http://localhost:4000/api/adminlogin',{
       email : adminemail,
       password : adminpassword, 
     }).then(result => {
       console.log(result.data)
+
     }).catch(err =>
       {
         console.log(err)
@@ -61,7 +66,7 @@ const AdminLogin = () => {
             name="login-button "
             id="login"
             class="btn btn-success"
-            href="#"
+            // href="/admin-profile"
             role="button"
             onClick={handleApi}
           >
