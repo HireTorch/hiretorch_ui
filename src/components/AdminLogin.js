@@ -66,7 +66,7 @@ const AdminLogin = () => {
             name="login-button "
             id="login"
             class="btn btn-success"
-            // href="/admin-profile"
+            href="/student-profile"
             role="button"
             onClick={handleApi}
           >

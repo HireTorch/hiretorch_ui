@@ -178,7 +178,7 @@ const StudentLogin = (props) => {
             name="student-login-btn"
             id="student-login"
             htmlType="Submit"
-            // href="/admin-profile"
+            href="/student-profile"
             onClick={handleSubmit}
           >
             Login

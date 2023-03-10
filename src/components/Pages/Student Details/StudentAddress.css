@@ -1,0 +1,11 @@
+.Student_Address{
+    text-align: right;
+    display: inline;
+    padding: 0.5rem 0.25rem;
+    margin-left: auto;
+}
+
+.label{
+   
+    text-align: left;
+}
