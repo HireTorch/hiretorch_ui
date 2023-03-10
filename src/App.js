@@ -29,6 +29,7 @@ import AdminLogin from "./components/AdminLogin";
 
 import AdminProfile from "./components/Adminprofile";
 import StudentDetail from "./components/Pages/Student Details/StudentDetail";
+import StudentQualification from "./components/Pages/Student Details/Qualification/StudentQualification";
 
 
 
@@ -48,13 +49,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Routes>
-        <Route path="/student-profile" element={<StudentDetail />} exact/>
-        </Routes> */}
         <Header Header_name="HireTorch_Header" />
         <hr />
-        {/* <CompanyLogin1 /> */}
-        {/* <StudentDetail /> */}
+       
         <Container>
           <Routes>
             <Route path="/admin-profile" element={<AdminProfile />}exact />
@@ -64,6 +61,8 @@ function App() {
             <Route path="/registration" element={<Register />} exact/>
             <Route path="/student-login-ant" element={<StudentLogin/>} exact/>
             <Route path="/student-profile" element={<StudentDetail />} exact/>
+            <Route path="/student-qualification" element={<StudentQualification />} exact/>
+
             
           </Routes>
           <Row>
