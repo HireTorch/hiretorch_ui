@@ -24,7 +24,7 @@ const Home = () => {
           </p>
           <br />
           <a
-            href="/student-login-ant"
+            href="/student-Login"
             class="btn btn-success btn-lg btn-rounded btn-extended"
           >
             <span class="text-theme">Login To Our Protal </span>

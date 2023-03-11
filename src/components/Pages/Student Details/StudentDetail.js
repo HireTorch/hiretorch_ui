@@ -39,6 +39,8 @@ const items = [
 
 
 const StudentDetail = () => {
+
+ 
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },

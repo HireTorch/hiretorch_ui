@@ -1,11 +1,9 @@
-
-
-//const url=""
+// const url=""
 // const history = useHistory;
 // useEffect(() => {
 //   if (localStorage.getItem("user-info")) {
 //     history.push("/add");
-//   }
+// }
 // }, []);
 
   // const handleLogin = (e) => {
