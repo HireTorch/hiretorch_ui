@@ -21,9 +21,9 @@ const CommonLogin = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:4000/home/candidate/login`, data);
-      if(res.data.msg === "Admin login successfully"){
-      navigate("/admin-profile");
+      const res = await axios.post("http://localhost:4000/home/candidate/login", data);
+      if(res.data.msg === "Login Successful"){
+        navigate("/student-profile-home");
     }
     if(res.data.msg === "User Login successfully"){
         navigate("/student-profile-home")

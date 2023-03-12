@@ -1,85 +1,123 @@
-import { FileOutlined, PieChartOutlined,CheckCircleOutlined,FileDoneOutlined, SolutionOutlined , UserOutlined ,DesktopOutlined,TeamOutlined } from '@ant-design/icons';
-import { IconHome, IconHomeSearch,  IconListSearch, IconSearch, IconSearchOff } from '@tabler/icons-react';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { useState } from 'react';
-import FileUpload from './FileUpload';
-import StudentQualification from './Qualification/StudentQualification';
-import StudentAddress from './StudentAddress';
-import StudentInfo from './StudentInfo';
-
-
-
+import {
+  FileOutlined,
+  PieChartOutlined,
+  CheckCircleOutlined,
+  FileDoneOutlined,
+  SolutionOutlined,
+  UserOutlined,
+  DesktopOutlined,
+  TeamOutlined,
+} from "@ant-design/icons";
+import {
+  IconDirectionSignOff,
+  IconHome,
+  IconHomeSearch,
+  IconListSearch,
+  IconSearch,
+  IconSearchOff,
+  IconSignatureOff,
+  IconWritingSignOff,
+} from "@tabler/icons-react";
+import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
+import { Routes, useNavigate } from "react-router-dom";
+import ProfileNavBar from "../ProfileNavBar";
+import FileUpload from "./FileUpload";
+import StudentQualification from "./Qualification/StudentQualification";
+import StudentAddress from "./StudentAddress";
+import StudentInfo from "./StudentInfo";
+import Link from "antd/es/typography/Link";
+import { LinkProps } from "antd/es/typography/Link";
+import App from "antd";
 
 
 const { Header, Content, Footer, Sider } = Layout;
-function getItem(label, key, icon, children) {
+function getItem(label, key, icon, children, link) {
   return {
     key,
     icon,
     children,
     label,
+    link,
   };
 }
 
-
-
-const items = [
-  getItem('My profile', '1', <UserOutlined /> ),
-  getItem('Add Details ', 'sub1', <PieChartOutlined />, [
-    getItem('Address', '3',<IconHome />),
-    getItem('Qualification', '4',<SolutionOutlined/>),
-    getItem('Experience', '5',<FileDoneOutlined/>),
-    getItem('Resume', '6', <FileOutlined />),
-  ]),
-  getItem('Job Search', '7', <IconListSearch />),
-  getItem('Applied Job', '8', <CheckCircleOutlined />),
-  getItem('Logout', '9', <TeamOutlined />),
-
-];
-
-
 const StudentDetail = () => {
-
- 
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const navigate = useNavigate();
+  const items = [
+ 
+    getItem("My profile", "1", <UserOutlined component={<Link to="/Student-address" />}/>),
+    // getItem("Add Details ", "sub1", <PieChartOutlined />, [
+    //   getItem("Address", "3", <IconHome />),
+    //   getItem("Qualification", "4", <SolutionOutlined />),
+    //   getItem("Experience", "5", <FileDoneOutlined />),
+    //   getItem("Resume", "6", <FileOutlined />),
+    // ]),
+    // getItem("Job Search", "7", <IconListSearch />),
+    // getItem("Applied Job", "8", <CheckCircleOutlined />),
+    // getItem("Logout", "9" , <IconDirectionSignOff/>),
+  ];
 
-
+  // for checking id of student
+  useEffect(() => {
+    if (!localStorage.getItem("id")) {
+      navigate("/student-Login");
+    }
+  }, []);
 
   return (
+    
     <Layout
       style={{
-        minHeight: '100vh',
+        minHeight: "40vh",
       }}
     >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
         <div
           style={{
-            height: 60,
+            height: 50,
             margin: 25,
-            background: 'rgba(255, 255, 255, 0.2)',
+            background: "rgba(255, 255, 255, 0.2)",
           }}
         />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={items}
+        />
       </Sider>
+
       <Layout className="site-layout">
         <Header
           style={{
             padding: 0,
             background: colorBgContainer,
           }}
-        />
+        >
+        <ProfileNavBar />
+        </Header>
+
         <Content
           style={{
-            margin: '0 16px',
+            margin: "40px 30px",
           }}
         >
           <Breadcrumb
             style={{
-              margin: '16px 0',
+              margin: "16px 10px",
             }}
           >
             <Breadcrumb.Item>Candidate </Breadcrumb.Item>
@@ -87,23 +125,23 @@ const StudentDetail = () => {
           </Breadcrumb>
           <div
             style={{
-              padding: 24,
-              minHeight: 500,
+              padding: 50,
+              minHeight: 700,
               background: colorBgContainer,
             }}
           >
             <StudentInfo />
-            <hr/>
-             <FileUpload/>
-             <hr/>
-             <StudentAddress />
-             <StudentQualification />
+            <hr />
+            <StudentAddress />
+            <hr />
+            <FileUpload />
+            <hr />
+            <StudentQualification />
           </div>
-         
         </Content>
         <Footer
           style={{
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
           HireTorch_Job_Portal
@@ -112,4 +150,5 @@ const StudentDetail = () => {
     </Layout>
   );
 };
+
 export default StudentDetail;

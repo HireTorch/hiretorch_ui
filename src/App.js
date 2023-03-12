@@ -11,54 +11,64 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Form from "./components/Pages/Form";
 
 // import NotFound from "./components/NotFound";
 
-import ForgotPassword from "./components/ForgotPassword";
+import Login from "./components/Login";
 import InstituteLogin from "./components/InstituteLogin";
 import CompanyLogin from "./components/CompanyLogin";
 import AdminLogin from "./components/AdminLogin";
+import ForgotPassword from "./components/ForgotPassword";
+
+import StudentDetail from "./components/Pages/Student Details/StudentDetail";
+import StudentAddress from "./components/Pages/Student Details/StudentAddress";
+import StudentQualification from "./components/Pages/Student Details/Qualification/StudentQualification";
+import StudentInfo from "./components/Pages/Student Details/StudentInfo";
 
 import AdminProfile from "./components/Adminprofile";
-import StudentDetail from "./components/Pages/Student Details/StudentDetail";
-import StudentQualification from "./components/Pages/Student Details/Qualification/StudentQualification";
-import StudentLogin from "./components/Pages/StudentLogin";
-import CommonLogin from "./components/Pages/Student Details/CommonLogin";
 
 function App() {
-
   const [currentForm, setCurrentForm] = useState("");
   const toggleForm = (forName) => setCurrentForm(forName);
-  {
-    currentForm === "login" ? (
-      <Login onFormSwitch={toggleForm} />
-    ) : (
-      <Register onFormSwitch={toggleForm} />
-    );
-  }
-  
+  //{
+  currentForm === "login" ? (
+    <Login onFormSwitch={toggleForm} />
+  ) : (
+    <Form onFormSwitch={toggleForm} />
+  );
+  //}
+
   return (
     <Router>
       <div className="App">
         <Header Header_name="HireTorch_Header" />
-        {/* <StudentLogin/> */}
         <hr />
-        {/* <CommonLogin/> */}
         <Container>
           <Routes>
-            <Route path="/admin-profile" element={<AdminProfile />} exact />
             <Route path="/home" element={<Home />} exact />
             <Route path="/about" element={<About />} exact />
             <Route path="/contact" element={<Contact />} exact />
-            <Route path="/registration" element={<Register />} exact />
-            <Route path="/student-profile-home" element= {<StudentDetail/>} exact />
+            <Route path="/registration" element={<Form />} exact />
+
+            <Route
+              path="/student-profile-home"
+              element={<StudentDetail />}
+              exact
+            />
+            <Route path="/Student-address" element={<StudentAddress />} exact />
+            <Route
+              path="/Student-Information"
+              element={<StudentInfo />}
+              exact
+            />
             <Route
               path="/student-qualification"
               element={<StudentQualification />}
               exact
             />
+
+            <Route path="/admin-profile" element={<AdminProfile />} exact />
           </Routes>
           <Row>
             <Col md={7}>
@@ -77,7 +87,7 @@ function App() {
           </Row>
           {/* <Footer /> */}
           {/* <Routes>
-          <Route path="/*" element={<NotFound />} exact />
+          <Route path="*" element={<NotFound />} exact />
         </Routes> */}
         </Container>
         <Footer />

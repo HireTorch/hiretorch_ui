@@ -1,14 +1,11 @@
 import { Button, Checkbox, Form, Input } from "antd";
-import { useState, useEffect, useRef, useContext ,createBrowserHistory} from "react";
+import { useState, useEffect, useRef, useContext ,createBrowserHistory,React} from "react";
 import { FormLabel } from "react-bootstrap";
-import { Navigate, useNavigate, useHistory} from "react-router-dom";
+import {  useNavigate, useHistory, json} from "react-router-dom";
 import axios from "axios";
-// import axios from "../api/axios";
-// import AuthContext from "../Context/AuthProvider";
-// import "./StudentLogin.css";
 
-// const LOGIN_URL = "/auth";
-  const onFinish = (values) => {
+
+const onFinish = (values) => {
   console.log("Success:", values);
 };
 
@@ -17,72 +14,51 @@ const onFinishFailed = (errorInfo) => {
 };
 
 const Login = (props) => {
-
+  let navigate = useNavigate(); 
+ 
   useEffect(() => {
     document.title = "Student-Login || Hire-Torch ";
   }, []);
 
- 
-  // const { setAuth } = useContext(AuthContext);
   const emailRef = useRef();
   const errRef = useRef();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [emails, setEmails] = useState("");
+  const [passwords, setPasswords] = useState("");
   const [err, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  // const history = createBrowserHistory()
-  // const Navigate = useNavigate()
-  // useEffect(() => {
-  //   emailRef.current.focus();
-  // });
 
   useEffect(() => {
     setError("");
-  }, [email, password]);
+  }, [emails, passwords]);
 
   const handleUserName = (e) => {
     console.log(e.target.value);
-    setEmail(e.target.value);
+    setEmails(e.target.value);
   };
   const handlePassword = (e) => {
-    setPassword(e.target.value);
+    setPasswords(e.target.value);
   };
 
-  // function handleClick(){
-  //   Navigate('student-profile-home')
-  // }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // history.push("/dashboard");
-    
-    //  history.push('/student-profile-home')
-    //  Navigate('/student-profile-home')
-    // var email = document.getElementById('email').value;
-    // var password = document.getElementById('password').value;
-    // if(email=='shubham12@gmail.com' && 'password'=='1234')
-    // {
-    //   window.location.assign('StudentDetail.js');
-    //   alert('Login Successful & Redirected');
-    // }else{
-    // alert('Invalid Information');
-    // return;
-    // }
-
-    // navigate('/student-profile-home')
-    console.log("submitted form ----->>>>");
-    
-
-    console.log(email, password);
     axios
       .post("http://localhost:4000/home/candidate/login", {
-        email: email,
-        password: password,
+        email: emails,
+        password: passwords,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log("email & password" + JSON.stringify(response.data));
+        console.log(response.data.email)
         console.log(response.data.id);
-        alert(response.data.message)
+        alert(response.data.message);
+        localStorage.setItem("id",response.data.id)
+        // console.log(localStorage.getItem)
+        if(emails==response.data.email  ){
+          let path = "/student-profile-home"; 
+          navigate(path);
+        } 
+       
       })
       .catch((err) => {
         console.log(err);
@@ -90,6 +66,7 @@ const Login = (props) => {
         setSuccess(err.data.id);
         alert(err.response.data.err.message);
       });
+      
   };
 
   return (
@@ -110,11 +87,11 @@ const Login = (props) => {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        autoComplete="on"
         onSubmit={handleSubmit}
       >
         <Form.Item>
-          <label className="Student-login-lable text-center offset-3">
+        <label className="Student-login-lable text-center offset-3">
             <h2>Student Login</h2>
           </label>
         </Form.Item>
@@ -124,8 +101,8 @@ const Login = (props) => {
           id="email"
           name="username"
           ref={useRef}
-          value={email}
-          onChange={handleUserName}
+          value={emails}
+          onBlur={handleUserName}
           rules={[
             {
               required: true,
@@ -140,7 +117,7 @@ const Login = (props) => {
           label="Password"
           name="password"
           id="password"
-          value={password}
+          value={passwords}
           onChange={handlePassword}
           rules={[
             {
@@ -172,15 +149,11 @@ const Login = (props) => {
           }}
         >
           <Button
-            // variant="primary"
-            // type="submit"/
             type="primary"
             name="student-login-btn"
             id="student-login"
             htmlType="Submit"
-            // href="/student-profile-home"
             onClick={handleSubmit}
-            // onClick={handleClick}
           >
             Login
           </Button>
@@ -200,128 +173,6 @@ const Login = (props) => {
       </Form>
     </div>
   );
+
 };
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { React, useState, useEffect } from "react";
-// import { Form, FormGroup } from "reactstrap";
-// import axios from "./api/axios";
-
-
-// const Login = (props) => {
-  
-//   useEffect(() => {
-//     document.title = "Candidate-Login || Hire-Torch ";
-//   }, []);
-
-
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [err, setError] = useState("");
-//   const [success, setSuccess] = useState(false);
-
-//   const handleSubmit = (e) => {
-//     e.preventDeFault();
-//     console.log("submitted form ----->>>>");
-//     console.log(email, password);
-//     axios
-//       .post("http://localhost:4000/home/candidate/login", {
-//         email: email,
-//         password: password,
-//       })
-//       .then((response) => {
-//         console.log(response.data);
-//         console.log(response.data.id);
-//         alert(response.data.message)
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         console.log(err.response);
-//         setSuccess(err.data.id);
-//         alert(err.response.data.err.message);
-//       });
-//   };
-
-
-
-//   return (
-//     <div className="auth-form-container col-sm-4 offset-sm-3">
-//       <Form className="candidate-login-form" onSubmit={handleSubmit}>
-//         <h2 className="text-center"> Candidate-Login </h2>
-//         <br />
-//         <FormGroup>
-//           <label For="exampleEmail">Student Email</label>
-//           <br />
-//           <input
-//             type="email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             name="email"
-//             id="exampleEmail"
-//             placeholder="abc@gmail.com"
-//           />
-//         </FormGroup>
-//         <FormGroup>
-//           <label For="examplePassword">Password</label>
-//           <br />
-//           <input
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             name="password"
-//             id="examplePassword"
-//             placeholder="Enter Password Here"
-//           />
-//           <br />
-//           <a className="mt-3 pt-2" hreF="/forgot-password">
-//             Forgot password?
-//           </a>
-//         </FormGroup>
-//         <FormGroup>
-//           <a
-//             name="login-button"
-//             id="login"
-//             class="btn btn-primary"
-//             href="/about"
-//             onClick={handleSubmit}
-//             role="button"
-//           >
-//             Login
-//           </a>
-//           <br />
-//           <br />
-//           <p className="mb-1">
-//             Don't have an account?
-//             <a hreF="/registration" onClick={() => props.onFormSwitch("login")}>
-//               <span> Register here</span>
-//             </a>
-//           </p>
-//           <a hreF="#" className="small text-muted">
-//             Privacy policy
-//           </a>{" "}
-//           <a hreF="#" className="small text-muted">
-//             Terms & Condition .
-//           </a>
-//         </FormGroup>
-//       </Form>
-//     </div>
-//   );
-// };
-
-// export default Login;

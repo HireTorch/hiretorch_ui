@@ -1,14 +1,10 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button,Form, Input } from "antd";
 import { useState, useEffect, useRef, useContext } from "react";
 import { FormLabel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import axios from "../api/axios";
-// import AuthContext from "../Context/AuthProvider";
-// import "./StudentLogin.css";
 
 
-// const LOGIN_URL = "/auth";
 const onFinish = (values) => {
   console.log("Success:", values);
 };
@@ -18,65 +14,50 @@ const onFinishFailed = (errorInfo) => {
 };
 
 const AdminLogin = (props) => {
+ let navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Admin-Login || Hire-Torch ";
   }, []);
 
-  const navigate = useNavigate();
-  // const { setAuth } = useContext(AuthContext);
   const emailRef = useRef();
   const errRef = useRef();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [emails, setEmails] = useState("");
+  const [passwords, setPasswords] = useState("");
   const [err, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  // useEffect(() => {
-  //   emailRef.current.focus();
-  // });
-
   useEffect(() => {
     setError("");
-  }, [email, password]);
+  }, [emails, passwords]);
 
   const handleUserName = (e) => {
     console.log(e.target.value);
-    setEmail(e.target.value);
+    setEmails(e.target.value);
   };
   const handlePassword = (e) => {
-    setPassword(e.target.value);
+    setPasswords(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
-    // var email = document.getElementById('email').value;
-    // var password = document.getElementById('password').value;
-    // if(email=='shubham12@gmail.com' && 'password'=='1234')
-    // {
-    //   window.location.assign('StudentDetail.js');
-    //   alert('Login Successful & Redirected');
-    // }else{
-    // alert('Invalid Information');
-    // return;
-    // }
-
-    // navigate('/student-profile-home')
-    console.log("submitted form ----->>>>");
-    
-
-    console.log(email, password);
     axios
       .post("http://localhost:4000/home/candidate/login", {
-        email: email,
-        password: password,
+        email: emails,
+        password: passwords,
       })
       .then((response) => {
-        console.log(response.data);
-        console.log(response.data.id);
-        alert(response.data.message)
+       // console.log("email & password" + JSON.stringify(response.data));
+       console.log(response.data.adminEmail)
+       console.log(response.data.adminId);
+       alert(response.data.message);
+       
+       if(emails===response.data.email  ){
+         let path = "/admin-profile"; 
+         navigate(path);
+       } 
+
       })
       .catch((err) => {
         console.log(err);
@@ -104,11 +85,11 @@ const AdminLogin = (props) => {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        autoComplete="on"
         onSubmit={handleSubmit}
       >
         <Form.Item>
-          <label className="Student-login-lable text-center offset-3">
+          <label className="Admin-login-lable text-center offset-3">
             <h2>Admin Login</h2>
           </label>
         </Form.Item>
@@ -118,8 +99,8 @@ const AdminLogin = (props) => {
           id="email"
           name="username"
           ref={useRef}
-          value={email}
-          onChange={handleUserName}
+          value={emails}
+          onBlur={handleUserName}
           rules={[
             {
               required: true,
@@ -134,7 +115,7 @@ const AdminLogin = (props) => {
           label="Password"
           name="password"
           id="password"
-          value={password}
+          value={passwords}
           rules={[
             {
               required: true,
@@ -154,10 +135,9 @@ const AdminLogin = (props) => {
           >
           <Button
             type="primary"
-            name="student-login-btn"
-            id="student-login"
+            name="Admin-login-btn"
+            id="Admin-login"
             htmlType="Submit"
-            // href="/student-profile-home"
             onClick={handleSubmit}
           >
             Login
@@ -168,127 +148,3 @@ const AdminLogin = (props) => {
   );
 };
 export default AdminLogin;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { React, useState, useEffect, useHistory } from "react";
-// import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
-// import axios from "axios";
-// import AdminProfile from "./Adminprofile";
-
-// const AdminLogin = () => {
-//   const [adminemail, setEmail] = useState("");
-//   const [adminpassword, setPassword] = useState("");
-//   const [err, setError] = useState("");
-
-
-
-//   useEffect(() => {
-//     document.title = "Admin || Hire-Torch";
-//   }, []);
-
-
-//   const handleApi = () => {
-//     console.log(adminemail, adminpassword);
-//     axios.post('http://localhost:4000/api/adminlogin',{
-//       email : adminemail,
-//       password : adminpassword, 
-//     }).then(result => {
-//       console.log(result.data)
-
-//     }).catch(err =>
-//       {
-//         console.log(err)
-//         alert('Server Error')
-//       })
-//   }
-
-//   return (
-//     <div className="auth-form-container col-sm-4 offset-sm-3">
-//       <Form className="Company-login-form" >
-//       {/* onClick={handleLogin} */}
-//         <h2 className="text-center"> ADMIN </h2>
-//         <br />
-//         <FormGroup>
-//           <label For="AdminEmail">UserID</label>
-//           <br />
-//           <input
-//             type="email"
-//             value={adminemail}
-//             onChange={(e) => setEmail(e.target.value)}
-//             name="email"
-//             id="adminEmail"
-//             placeholder="Email"
-//           />
-//         </FormGroup>
-//         <FormGroup>
-//           <label For="AdminPassword">Password</label>
-//           <br />
-//           <input
-//             type="password"
-//             value={adminpassword}
-//             onChange={(e) => setPassword(e.target.value)}
-//             name="adminpassword"
-//             id="adminPassword"
-//             placeholder="password "
-//           />
-//           <br />
-//         </FormGroup>
-//         <FormGroup className="button-bt-3">
-//           <a
-//             name="login-button "
-//             id="login"
-//             class="btn btn-success"
-//             href="/student-profile"
-//             role="button"
-//             onClick={handleApi}
-//           >
-//             Login
-//           </a>
-//         </FormGroup>
-//       </Form>
-//     </div>
-//   );
-// };
-
-// export default AdminLogin;

@@ -8,6 +8,7 @@ import AuthContext from "../Context/AuthProvider";
 import "./StudentLogin.css";
 // import { toast } from "react-toastify";
 import React from "react";
+import { message } from "antd";
 
   // const LOGIN_URL = "/auth";
 
@@ -71,13 +72,20 @@ const StudentLogin = (props) => {
     //   if(res.data.msg === "Admin login successfully"){
     //   navigate("/admin-profile");
     // }
-    if(res.data.msg === "undefine"){
+    if(res.data.status === true){
+      console.log("In");
         navigate("/student-profile-home")
       }
       console.log(res.data.msg, "user Login");
-      alert(res.data.msg, {
-        position: "top-center"
-      });
+      message.success("login Success")
+      window.location.href="/student-profile-home"
+      // setTimeout ( ( ) => {
+      //   window.location.href="/student-profile-home"
+      // },500)
+      // alert(res.data.msg, {
+      //   position: "top-center"
+      // }
+      // );
       
       localStorage.setItem("email", JSON.stringify(data.email));
       window.location.reload();

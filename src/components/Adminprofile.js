@@ -78,7 +78,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const data = [
-  { link: '', label: 'Notifications', icon: IconBellRinging },
+  { link: '/Student-address', label: 'Notifications', icon: IconBellRinging },
   { link: '', label: 'My Profile', icon: IconReceipt2 },
   { link: '', label: 'Colleges Info', icon: IconDatabaseImport },
   { link: '', label: 'Student Info', icon: IconDatabaseImport },
@@ -122,7 +122,7 @@ export function AdminProfile() {
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <a href="/Student-address" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
           <span>Change account</span>
         </a>

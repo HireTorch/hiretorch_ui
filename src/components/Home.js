@@ -1,5 +1,6 @@
 import { React, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { CardsCarousel } from "./NewComponent/CardsCarousel";
 
 const Home = () => {
@@ -23,11 +24,12 @@ const Home = () => {
             Complete Your Profile Today ....
           </p>
           <br />
+
           <a
             href="/student-Login"
             class="btn btn-success btn-lg btn-rounded btn-extended"
           >
-            <span class="text-theme">Login To Our Protal </span>
+            <span class="text-theme">Login To Our Portal </span>
           </a>
         </Col>
         <Col md={7}>

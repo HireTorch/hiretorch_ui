@@ -76,7 +76,9 @@ const StudentQualification = () => {
               >
                 <Select placeholder="Please select Qualification Level">
                   <Option value="SSC/10TH/CBSE">SSC/10TH/CBSE</Option>
-                  <Option value="HSC/12TH">HSC/12TH</Option>
+                  <Option value="egree">HSC/12TH</Option>
+                  <Option value="Diploma">Diploma</Option>
+                  <Option value="Degree">Degree</Option>
                 </Select>
               </Form.Item>
             </Col>

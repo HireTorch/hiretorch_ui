@@ -39,9 +39,9 @@ function Header({ Header_name }) {
             <NavDropdown.Item tag="sl" as ={Link} to="/student-Login" action >
               Candidate Login
             </NavDropdown.Item>
-            <NavDropdown.Item tag="il" as ={Link} to="/institute-Login" action>
+            {/* <NavDropdown.Item tag="il" as ={Link} to="/institute-Login" action>
               Institute Login
-            </NavDropdown.Item>
+            </NavDropdown.Item> */}
             <NavDropdown.Item tag="cl" as ={Link} to="/company-Login" action>
               Company Login
             </NavDropdown.Item>
@@ -51,10 +51,11 @@ function Header({ Header_name }) {
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        
+   
       </Container>
-     
+  
     </Navbar>
+    
     
   );
 }
